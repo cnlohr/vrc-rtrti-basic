@@ -1,18 +1,14 @@
 # vrc-rtrti-basic
 Very basic example of using VRC-RTRTI
 
-
-
-# General Setup
-
-To recompile, just install TCC (3.8 MB download) https://github.com/cnlohr/tinycc-win64-installer/releases/tag/v0_0.9.27
+## General Setup
 
 For VCC
  * AudioLink
  * TXL - VideoTXL
 
 
-For new setups
+Steps to use this tool in all of its functioning.
  * Add AudioLink Object
  * Add AudioLink Controller
  * Add VideoTXL Player
@@ -50,6 +46,12 @@ Notes:
 
 Future work:
  * Make toggle for grab pass.
+
+## Working with the C tool
+
+The core of this is a C program that lives in Assets/rtrti that converts .obj files into accelerated pre-baked structures.
+
+To recompile, just install TCC (3.8 MB download) https://github.com/cnlohr/tinycc-win64-installer/releases/tag/v0_0.9.27
 
 # Importing
 
