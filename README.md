@@ -48,6 +48,9 @@ Warnings:
 Notes:
  * You can modify CustomRenderTexture/CTCopy to use custom areas in the texture to include dynamic lighting.
 
+Future work:
+ * Make toggle for grab pass.
+
 # Importing
 
 Open .blend file in DemoScene/SoruceModel~  (The ~ is there to prevent Unity from importing the blend).
