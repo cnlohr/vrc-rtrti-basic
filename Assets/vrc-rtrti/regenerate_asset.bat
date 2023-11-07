@@ -1,0 +1,1 @@
+bvhgen ..\DemoScene\LowDef.obj ..\DemoScene\LowDef.asset
