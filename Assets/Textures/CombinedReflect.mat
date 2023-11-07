@@ -73,11 +73,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Tex4:
         m_Texture: {fileID: 2800000, guid: 29890ae297aa63649bda9edec6882b25, type: 3}
-        m_Scale: {x: 4, y: 4}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _Tex5:
         m_Texture: {fileID: 2800000, guid: 57676d3bae85b2c43afbc90c71d78c45, type: 3}
-        m_Scale: {x: 2, y: -2}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _Tex6:
         m_Texture: {fileID: 2800000, guid: 66a9acd8cf9d38b49af6ab2a345dadce, type: 3}
@@ -117,7 +117,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tex0Color: {r: 1, g: 1, b: 1, a: 1}
     - _Tex1Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Tex2Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+    - _Tex2Color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
     - _Tex3Color: {r: 0.18946455, g: 0.18946455, b: 0.18946455, a: 1}
     - _Tex4Color: {r: 1, g: 1, b: 1, a: 1}
     - _Tex5Color: {r: 1, g: 0.7254902, b: 0.7254902, a: 1}

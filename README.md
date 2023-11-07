@@ -37,6 +37,9 @@ Steps to use this tool in all of its functioning.
    * Set it to Cell Corner
    * Assign it to your light probes.
  * Be sure you mimic the lighting settings for emissive and receiving (raytraced) objects.  Large static receiving scenes should use lightmaps.  Emissive objects must tightly adhere to the lighting settings held within.
+ * Your high quality mesh, you can use a lightmap, but you will need to go into Debug, and then set Light Probe Usage = 2, and assign the light probe proxy volume.
+
+ 
 
 Warnings:
  * The Emissive texture for RTGI is cursed.  PLEASE just copy-paste it and not mess with it.

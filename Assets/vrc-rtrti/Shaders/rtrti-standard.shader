@@ -200,12 +200,12 @@
 				{
 					hitworld = hitz.z * worldRefl + worldEye;
 					float3 combtex = tex2Dlod( _CombinedRelfectionTextures, float4( uvoz.xy/float2(_NumberOfCombinedTextures, 1.0), 0, 0 ) );
-#if UNITY_LIGHT_PROBE_PROXY_VOLUME
+//#if UNITY_LIGHT_PROBE_PROXY_VOLUME
 					col.rgb = ShadeSHPerPixel ( hitnorm, 0., hitworld) * combtex * .8; //.8 is arbitrary, but slightly darker.
-#else
-					// No mechanism to get brightness.
-					col.rgb = combtex;
-#endif
+//#else
+//					// No mechanism to get brightness.
+//					col.rgb = combtex;
+//#endif
 			
 				}
 			}
