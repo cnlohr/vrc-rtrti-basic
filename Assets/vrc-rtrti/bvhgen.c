@@ -705,6 +705,20 @@ int main( int argc, char ** argv )
 		asset2d[0][axis][1] = root->y;
 		printf( "WRITING %d %d\n", root->x, root->y );
 	}
+	
+	// Flip Unity Asset
+	if( 0 )
+	{
+		int y;
+		for( y = 0; y < TEXH/2; y++ )
+		{
+			uint8_t linedata[TEXW*16];
+			memcpy( linedata, asset2d[y], sizeof( asset2d[0] ) );
+			memcpy( asset2d[y], asset2d[TEXH-1-y], sizeof( linedata) ) ;
+			memcpy( asset2d[TEXH-1-y], linedata, sizeof( linedata) ) ;
+		}
+	}
+
 	WriteUnityImageAsset( argv[2], asset2d, sizeof(asset2d), TEXW, TEXH, 0, UTE_RGBA_FLOAT );
 
 	printf( "Usage: %d / %d (%3.2f%%)\n", totalallocations, TEXW*TEXH, ((float)totalallocations)/(TEXW*TEXH)*100. );

@@ -89,7 +89,7 @@
 		float _SmoothnessMux;
 		float _SmoothnessShift;
 		
-		#include "/Assets/vrc-rtrti/Shaders/trace.cginc"
+		#include "/Assets/vrc-rtrti/Shaders/trace-load.cginc"
 
 		struct Input
 		{
@@ -146,6 +146,7 @@
 			#if defined( _ENABLERT )
 			{
 				hitz = CoreTrace( worldEye, worldRefl );
+				o.Albedo = worldRefl*0.00001; //XXX WHYYYYY If I don't put this here, the compiler produces nonsense code.
 			}
 			#endif
 			

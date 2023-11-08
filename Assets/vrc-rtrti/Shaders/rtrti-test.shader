@@ -22,7 +22,7 @@
 			#define DEBUG_TRACE
 			
 			#include "UnityCG.cginc"
-			#include "/Assets/vrc-rtrti/Shaders/trace.cginc"
+			#include "/Assets/vrc-rtrti/Shaders/trace-load.cginc"
 
 			struct appdata
 			{

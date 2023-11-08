@@ -90,7 +90,7 @@
 		float _SmoothnessMux;
 		float _SmoothnessShift;
 		
-		#include "/Assets/vrc-rtrti/Shaders/trace.cginc"
+		#include "/Assets/vrc-rtrti/Shaders/trace-load.cginc"
 
 		struct Input
 		{
@@ -164,6 +164,7 @@
 					//col.rgb += hitnorm*.2;
 				}
 				o.Emission = col;
+				o.Albedo = worldRefl*0.00001; //XXX WHYYYYY If I don't put this here, the compiler produces nonsense code.
 				return;
 			}
 			#endif
@@ -271,6 +272,7 @@
 
 			//c = 1.0;
 			o.Albedo = (c.rgb-_DiffuseShift)*(_DiffuseUse);
+			o.Albedo += worldRefl*0.00001; //XXX WHYYYYY If I don't put this here, the compiler produces nonsense code.
 			o.Metallic = tex2D (_Metallicity, IN.uv_MainTex) * _MetallicMux + _MetallicShift;
 			o.Smoothness = tex2D (_Roughness, IN.uv_MainTex) * _SmoothnessMux + _SmoothnessShift;
 			
