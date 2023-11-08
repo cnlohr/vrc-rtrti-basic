@@ -60,10 +60,10 @@ float4 CoreTrace( float3 eye, float3 dir )
 		float3 center = (minrel + maxrel)/2;
 		float dr = dot( center, dir );
 		
-		bool hit = all(
-			float3( max_component(tmin), 0, dr-r )
-			<
-			float3( min_component(tmax), dr+r, minz ) );
+		float3 checksLess = float3( max_component(tmin), 0, dr-r );
+		float3 checksGreater = float3( min_component(tmax), dr+r, minz );
+		bool3 checks = checksLess < checksGreater;
+		bool hit = all( checks );
 
 		// Does intersect, AND is it in front of us, and behind the closest hit object?
 		if( hit && maxcorner.a > 0)
