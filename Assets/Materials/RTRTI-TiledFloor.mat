@@ -9,9 +9,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: RTRTI-TiledFloor
   m_Shader: {fileID: 4800000, guid: 6b8b5cd2a57a120418783686ae64d4e9, type: 3}
-  m_ShaderKeywords: _ENABLERT
+  m_ShaderKeywords: _DEBUG_TRACE _ENABLERT _ENABLESSR
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -80,6 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - DEBUG_TRACE: 0
     - _AlbedoBoost: 1
     - _BumpScale: 1
     - _Cutoff: 0.5

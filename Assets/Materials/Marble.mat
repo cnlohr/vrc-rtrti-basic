@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Marble
   m_Shader: {fileID: 4800000, guid: 6b8b5cd2a57a120418783686ae64d4e9, type: 3}
-  m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP
+  m_ShaderKeywords: _DEBUG_TRACE _EMISSION _ENABLERT _ENABLESSR _METALLICGLOSSMAP
+    _NORMALMAP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -80,6 +81,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - DEBUG_TRACE: 0
     - _AlbedoBoost: 1
     - _BumpScale: 1
     - _Cutoff: 0.5

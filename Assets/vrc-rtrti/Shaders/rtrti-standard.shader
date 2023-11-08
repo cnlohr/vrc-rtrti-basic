@@ -33,8 +33,9 @@
 		_SmoothnessShift("Smooth Shift", float) = 0.0
 		[HDR] _Ambient("Ambient Color", Color) = (0.1,0.1,0.1,1.0)
 		
-		[ToggleUI] _ENABLERT( "Enable Ray Tracing", float ) = 1.0
-		[ToggleUI] _ENABLESSR( "Enable SSR", float ) = 1.0
+		[Toggle(DEBUG_TRACE)] DEBUG_TRACE( "Debug Trace", float ) = 0.0
+		[Toggle(_ENABLERT)] _ENABLERT( "Enable Ray Tracing", float ) = 1.0
+		[Toggle(_ENABLESSR)] _ENABLESSR( "Enable SSR", float ) = 1.0
     }
     SubShader
     {
@@ -45,8 +46,9 @@
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard nometa
 
-		//#pragma shader_feature_local _ENABLESSR
-		//#pragma shader_feature_local _ENABLERT
+		#pragma multi_compile_local _  _ENABLESSR
+		#pragma multi_compile_local _  _ENABLERT
+		#pragma multi_compile_local _  DEBUG_TRACE
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 5.0
@@ -68,7 +70,6 @@
 		
 		float4 _GrabTexture_TexelSize;
 		float4 _NoiseTex_TexelSize;
-		float _ENABLERT, _ENABLESSR;
 		float _NumberOfCombinedTextures;
 		float _DiffuseUse, _DiffuseShift, _MediaBrightness;
 		float _RoughnessIntensity, _RoughnessShift;
@@ -143,12 +144,30 @@
 			float epsilon = 0.00;
 			float3 worldEye = IN.worldPos+worldRefl*epsilon;
 			float4 hitz = 1e20;
-			if( _ENABLERT > 0.5 )
+			#if defined( _ENABLERT )
 			{
 				hitz = CoreTrace( worldEye, worldRefl );
 			}
+			#endif
 			
 			float3 debug = 0.0;
+			
+			#ifdef DEBUG_TRACE
+			{
+				float2 uvo;
+				float3 hitnorm;
+				col.r = (hitz.a%1000)/255;
+				col.g = (hitz.a/1000)/255;
+				if( hitz.y >= 0 )
+				{
+					GetTriDataFromPtr( worldEye, worldViewDir, hitz.xy, uvo, hitnorm );
+					//col.rgb += hitnorm*.2;
+				}
+				o.Emission = col;
+				return;
+			}
+			#endif
+
 			// Test if we need to reverse-cast through a mirror.
 #if 0
 			if( _Flip > 0.5 ) {
@@ -213,7 +232,7 @@
 			#ifndef SHADER_TARGET_SURFACE_ANALYSIS
 				float matchz = length( _WorldSpaceCameraPos.xyz - hitworld );
 				float4 ssr = 0.0;
-				if( _ENABLESSR > 0.5 )
+				#if defined(_ENABLESSR)
 				{
 					ssr = getSSRColor( float4( worldEye, 1.0 ), worldViewDir, float4( worldRefl, 0. ), worldNormal,
 						// large/small radius
@@ -235,6 +254,7 @@
 						1, matchz ); // Alpha
 					col = lerp( col.rgba, ssr.rgba, ssr.a );
 				}
+				#endif
 			#endif
 			if( length( debug )> 0.0 ) col.rgb = debug;			
 			
