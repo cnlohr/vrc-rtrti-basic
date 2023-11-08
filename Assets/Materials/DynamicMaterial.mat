@@ -9,8 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: DynamicMaterial
   m_Shader: {fileID: 4800000, guid: 180016f23d6f0124c85ff07caba49e0a, type: 3}
-  m_ShaderKeywords: _DEBUG_TRACE _EMISSION _ENABLERT _ENABLESSR _METALLICGLOSSMAP
-    _NORMALMAP
+  m_ShaderKeywords: _DEBUG_TRACE _EMISSION _ENABLERT _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

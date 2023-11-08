@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: RTRTI-RustedMetal
   m_Shader: {fileID: 4800000, guid: 6b8b5cd2a57a120418783686ae64d4e9, type: 3}
-  m_ShaderKeywords: _DEBUG_TRACE _ENABLERT _ENABLESSR
+  m_ShaderKeywords: _DEBUG_TRACE _ENABLERT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
