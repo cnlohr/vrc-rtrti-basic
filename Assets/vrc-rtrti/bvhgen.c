@@ -280,9 +280,11 @@ void GetMinXMaxHForTree( struct BVHPair * pairs, float * tridata, float * minxma
 	minxmaxh[0] = 1e20;
 	minxmaxh[1] = 1e20;
 	minxmaxh[2] = 1e20;
+	minxmaxh[3] = 0;
 	minxmaxh[4] =-1e20;
 	minxmaxh[5] =-1e20;
 	minxmaxh[6] =-1e20;
+	minxmaxh[7] = 0;
 
 	GetTreeExtents( pairs, tridata, minxmaxh, minxmaxh+4 );
 
@@ -638,8 +640,8 @@ void ReorganizeTreeOrder( struct BVHPair * tt, int dir )
 	if( tt->a && tt->b )
 	{
 		int axis = dir / 2;
-		float cna = (tt->a->minxmaxh[axis]+tt->a->minxmaxh[axis+3])/2;
-		float cnb = (tt->b->minxmaxh[axis]+tt->b->minxmaxh[axis+3])/2;		
+		float cna = (tt->a->minxmaxh[axis]+tt->a->minxmaxh[axis+4])/2;
+		float cnb = (tt->b->minxmaxh[axis]+tt->b->minxmaxh[axis+4])/2;		
 		if( dir & 1 )
 		{
 			if( cna > cnb )
