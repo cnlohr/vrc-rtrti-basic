@@ -12,6 +12,12 @@ namespace EmissionUpdate
     {
         MeshRenderer rendererToUpdate;
 		public Material matToUpdate;
+		public bool bEnabled = true;
+		
+		public void SetEnabled( bool b )
+		{
+			bEnabled = b;
+		}
 
         void Start()
         {
@@ -20,9 +26,10 @@ namespace EmissionUpdate
 			matToUpdate.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
-			RendererExtensions.UpdateGIMaterials(rendererToUpdate);
+			if( bEnabled )
+				RendererExtensions.UpdateGIMaterials(rendererToUpdate);
         }
     }
 }

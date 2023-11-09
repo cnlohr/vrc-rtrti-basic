@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: EmissiveObjectsWithRTGI
   m_Shader: {fileID: 4800000, guid: b434fd53607c9ff4ca54cb8a2f3194ee, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _EnableEnlightenIntensity
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
@@ -68,6 +68,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EnableEnlightenIntensity: 1
+    - _EnableRTIntensity: 0
     - _GIAlbedoMux: 10
     - _GIEmissionMux: 8
     - _GlossMapScale: 1

@@ -35,6 +35,7 @@
 			{
 				float2 uv = IN.localTexcoord.xy;
 				float3 col;
+				
 				if( uv.y > 1.0 - 1090.0 / 1280.0 ) // Not 1080 to add a little edge to prevent ugly bleeding.
 				{
 					if( _IsAVProInput )

@@ -27,15 +27,18 @@ public class DoubleJump : UdonSharpBehaviour
 
   private void Update()
   {
-    if (Networking.LocalPlayer.IsPlayerGrounded())
-    {
-      jumps = numberOfExtraJumps;
-    }
+		if( Networking.LocalPlayer != null )
+		{
+			if (Networking.LocalPlayer.IsPlayerGrounded())
+			{
+			  jumps = numberOfExtraJumps;
+			}
+		}
   }
 
   private void Start()
   {
-    string name = Networking.LocalPlayer.displayName;
+   /* string name = Networking.LocalPlayer.displayName;
     foreach (string plrName in whitelist)
     {
       if (name == plrName)
@@ -45,7 +48,7 @@ public class DoubleJump : UdonSharpBehaviour
         numberOfExtraJumps = numberOfExtraJumpsMochie;
         break;
       }
-    }
+    } */
   }
 
   void InputMoveHorizontal(float axisVal, VRC.Udon.Common.UdonInputEventArgs args)
