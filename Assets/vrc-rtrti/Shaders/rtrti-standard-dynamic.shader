@@ -41,6 +41,7 @@
     {
 		Tags { "Queue"="Transparent-1" "RenderType"="Opaque"}
 
+
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard nometa
@@ -146,7 +147,6 @@
 			#if defined( _ENABLERT )
 			{
 				hitz = CoreTrace( worldEye, worldRefl );
-				o.Albedo = worldRefl*0.00001; //XXX WHYYYYY If I don't put this here, the compiler produces nonsense code.
 			}
 			#endif
 			
@@ -164,6 +164,7 @@
 					//col.rgb += hitnorm*.2;
 				}
 				o.Emission = col;
+				o.Albedo = worldRefl*0.00001; //XXX WHYYYYY If I don't put this here, the compiler produces nonsense code.
 				return;
 			}
 			#endif
@@ -271,6 +272,7 @@
 
 			//c = 1.0;
 			o.Albedo = (c.rgb-_DiffuseShift)*(_DiffuseUse);
+			o.Albedo = worldRefl*0.00001; //XXX WHYYYYY If I don't put this here, the compiler produces nonsense code.
 			o.Metallic = tex2D (_Metallicity, IN.uv_MainTex) * _MetallicMux + _MetallicShift;
 			o.Smoothness = tex2D (_Roughness, IN.uv_MainTex) * _SmoothnessMux + _SmoothnessShift;
 			
