@@ -10,12 +10,16 @@ public class MaterialToggle : UdonSharpBehaviour
 	public Material[] materialList;
 	public string propName;
 	public bool defaultOn;
+	public bool global;
+	
+	private bool bNonGlobalToggle;
 	
     [UdonSynced, FieldChangeCallback(nameof(SyncedToggle))]
-	public bool currentlyOn;
+	private bool currentlyOn;
 	
 	void Start()
 	{
+		bNonGlobalToggle = defaultOn;
 		UpdateKeyword();
 	}
 
@@ -32,8 +36,12 @@ public class MaterialToggle : UdonSharpBehaviour
 
 	public void UpdateKeyword()
 	{
-		bool bOn = SyncedToggle;
-		if( defaultOn ) bOn = !bOn;
+		bool bOn = bNonGlobalToggle;
+		if( global )
+		{
+			bOn = SyncedToggle;
+			if( defaultOn ) bOn = !bOn;
+		}
 		foreach( Material m in materialList )
 		{
 			if( m != null )
@@ -49,8 +57,12 @@ public class MaterialToggle : UdonSharpBehaviour
 	public override void Interact()
 	{
 		currentlyOn = !currentlyOn;
-        Networking.SetOwner(Networking.LocalPlayer, gameObject);
+		bNonGlobalToggle = !bNonGlobalToggle;
 		UpdateKeyword();
-		RequestSerialization();
+		if( global )
+		{
+			RequestSerialization();
+	        Networking.SetOwner(Networking.LocalPlayer, gameObject);
+		}
 	}
 }
