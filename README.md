@@ -14,7 +14,7 @@ In general VRC-RTRTI uses:
 
 Primary rays that hit reflective surfaces (ones that either use rtrti-standard (for static, lightmapped objects) or rtrti-standard-dynamic (for dynamic objects) and the compute the secondary ray.  This ray is computed per pixel to determine what the reflected pixel should look like.
 
-![Debug Image]()
+![Debug Image](https://raw.githubusercontent.com/cnlohr/vrc-rtrti-basic/master/DocImages/DebugImg.png)
 
 ### Geometry
 
@@ -29,7 +29,7 @@ For your world, you will need to generate three pieces of geometry:
    * Low res geometry must use UVs outside the 0..1 range, where the fractional portion of the UV value indicates its location within a UV map.  The whole number value represents which texture in the combined textures texture to sample from.
    * This is tricky, you can do this when combining the geometry, and decimating, going to uv mode, pressing `g` then `x` then typing the number of the texture as it appears in the composite texture (See below) to move the UVs to the correct place.
 
-![Blender Example]()
+![Blender Example](https://raw.githubusercontent.com/cnlohr/vrc-rtrti-basic/master/DocImages/BlenderImg.png)
 
 You may export your high-res and emission source geometry may be exported as FBXs or OBJs, or whatever, but, your Low-res world geometry *must* be exported as an OBJ file.  It *must* be triangularized.  You can do this easily by using the Blender OBJ exporer, and selecting "only export selected objects".
 
@@ -43,7 +43,7 @@ You will need to use the "Combined" shader/material to generate a special textur
 
 You can do this by dropping in your extra materials into the material slots on this material.  It's currently hard-coded to 10 total textures, so any additional ones will take code modification.
 
-![Composite Texture]()
+![Composite Texture](https://raw.githubusercontent.com/cnlohr/vrc-rtrti-basic/master/DocImages/Composite.png)
 
 ### Materials
 
