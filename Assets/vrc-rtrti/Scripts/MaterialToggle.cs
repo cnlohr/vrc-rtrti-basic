@@ -52,6 +52,12 @@ public class MaterialToggle : UdonSharpBehaviour
 					m.DisableKeyword( propName );
 			}
 		}
+		
+		MaterialPropertyBlock block = new MaterialPropertyBlock();
+		MeshRenderer mr = GetComponent<MeshRenderer>();
+		//block.SetVector( "_Color", new Vector4( bOn?1.0f:0.1f, bOn?1.0f:0.1f, bOn?1.0f:0.1f, 1.0f ) );
+		block.SetVector( "_EmissionColor", new Vector4( bOn?.6f:0.0f, bOn?0.6f:0.0f, bOn?0.6f:0.0f, 1.0f ) );
+		mr.SetPropertyBlock(block);
 	}
 
 	public override void Interact()

@@ -87,7 +87,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DiffuseShift: 0
-    - _DiffuseUse: 0.5
+    - _DiffuseUse: 0.2
     - _DstBlend: 0
     - _ENABLERT: 1
     - _ENABLESSR: 1
