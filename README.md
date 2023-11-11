@@ -18,6 +18,8 @@ Primary rays that hit reflective surfaces (ones that either use rtrti-standard (
 
 ### Geometry
 
+Open .blend file in DemoScene/SoruceModel~  (The ~ is there to prevent Unity from importing the blend).
+
 For your world, you will need to generate three pieces of geometry:
 
 * High-res world geometry
@@ -99,8 +101,17 @@ The core of this is a C program that lives in Assets/rtrti that converts .obj fi
 
 To recompile, just install TCC (3.8 MB download) https://github.com/cnlohr/tinycc-win64-installer/releases/tag/v0_0.9.27
 
-# Importing
+The EXE that's checked in is heavily optimized by GCC, for faster execution.
 
-Open .blend file in DemoScene/SoruceModel~  (The ~ is there to prevent Unity from importing the blend).
+## Core algorithm.
 
-Export each object as a separate OBJ file. 
+The core algorithm imports a .obj triangle file.  From here, it:
+
+1. Turns it into a triangle soup.  Just a list of triangles.
+2. Puts those triangles into little axis-aligned bounding boxes.
+3. Searches all of the bounding boxes, to figure out which two can be combined to make the smallest surrounding bounding box.
+4. Places those two bounding boxes together into a bounding box containing both.
+5. Repeat until all bounding boxes has been gathered together.
+6. Write out a stream of all of the bounding boxes and triangles.
+7. Go back and write into that stream the "address of" the bounding box to check next in the event a current bounding box was hit, or missed.
+8. Write the traversal logic in directional order, i.e. +x, +y, +z, -x, -y, -z and write out all 6 combinations.
