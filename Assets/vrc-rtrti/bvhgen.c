@@ -528,7 +528,9 @@ int WriteInBVH( struct BVHPair * tt, float * triangles )
 	int y = tt->y;
 	
 	int j;
-	float * hitmiss = asset2d[y+1][x+0];
+	// We may encode as int or float.
+	int32_t * hitmiss = (void*)asset2d[y+1][x+0];
+	int minusone;
 	if( !tt->a )
 	{
 		//XXXX TOOD If we have a "HIT" on a leaf node, what does that mean?

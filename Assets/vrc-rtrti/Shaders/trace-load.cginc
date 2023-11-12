@@ -38,11 +38,11 @@ float4 CoreTrace( float3 eye, float3 dir )
 	dir = normalize( dir );
 
 	// WHYYYYYYYY - our integer pointer to the texture.  It goes faster as a float :(
-	float2 ptr = float2( 0, 0 );
+	uint2 ptr = 0;
 	float2 ptrhit = -1;
 	float4 mincorner;
 	float4 maxcorner;
-	float4 truefalse;
+	uint4 truefalse;
 	int i = 0;
 	float minz = 1e20;
 	float2 uvo = -1;
@@ -56,14 +56,14 @@ float4 CoreTrace( float3 eye, float3 dir )
 		int axisno = (dira.x>dira.y)? ( (dira.x > dira.z)?0:2 ) : ( (dira.y > dira.z)?1:2 );
 		int dire = dir[axisno]>0;
 		ptr = _GeoTex.Load( int3( (axisno * 2 + dire), 0, 0) );
-		mincorner = _GeoTex.Load( int3( ptr, 0) );
-		maxcorner = _GeoTex.Load( int3( ptr + float2( 1, 0 ), 0) );
-		truefalse = _GeoTex.Load( int3( ptr + float2( 0, 1 ), 0 ) );
 	}
 
 	[loop]
 	while( i++ < 255 && ptr.y > 0 )
 	{
+		mincorner = _GeoTex.Load( int3( ptr, 0) );
+		maxcorner = _GeoTex.Load( int3( ptr + float2( 1, 0 ), 0) );
+		truefalse = asuint( _GeoTex.Load( int3( ptr + float2( 0, 1 ), 0 ) ) );
 
 		// minmaxcorner:  [ x y z ] [ radius ]
 		// minmaxcorner:  [ x y z ] [ 1 if triangle, 0 otherwise ]
@@ -122,11 +122,7 @@ float4 CoreTrace( float3 eye, float3 dir )
 				ptrhit = float2( v0.a, v1.a );
 			}
 		}
-		ptr = hit?truefalse.xy:truefalse.zw;
-		mincorner = _GeoTex.Load( int3( ptr, 0) );
-		maxcorner = _GeoTex.Load( int3( ptr + float2( 1, 0 ), 0) );
-		truefalse = _GeoTex.Load( int3( ptr + float2( 0, 1 ), 0 ) );
-	
+		ptr = hit?truefalse.xy:truefalse.zw;	
 	}
 
 	return float4( ptrhit, minz,  i + tricheck * 1000 );

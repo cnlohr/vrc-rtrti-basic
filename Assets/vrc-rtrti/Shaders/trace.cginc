@@ -1,3 +1,5 @@
+// DO NOT USE THIS, IT IS THE LEGACY WAY OF TRACING.
+
 sampler2D _GeoTex;
 float4 _GeoTex_TexelSize;
 
